@@ -466,7 +466,7 @@ function Header({ audioRef, isAudioOn, setIsAudioOn }) {
                                                                                                                       <img src={backButton} alt="drf"
                                                                                                                         className="w-6 h-6" />
                                                                                                                     </Link>
-                                                                                                                    <img className='w-20 h-10 ' src={usawinlogo} alt="logo not found" />
+                                                                                                                    <img className='w-20 h-14 ' src={usawinlogo} alt="logo not found" />
                                                                                                                     <div className="flex items-center gap-2">
                                                                                                                       <Link to="/customerservices" >
                                                                                                                         <img className='w-7 h-7' src={kefu} alt="logo not found" />

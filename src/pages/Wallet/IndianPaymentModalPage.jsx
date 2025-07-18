@@ -104,10 +104,10 @@ const IndianPaymentModalPage = () => {
         )}
         {/* hhhhhh */}
         <div className="relative mt-3 w-full py-1.5 bg-inputBg border-none text-gray rounded-[12px]">
-          <p className="text-[14px]">{indianQr?.wallet_address}</p>
+          <p className="text-[14px]">{indianQr?.upi_id}</p>
           <button
             onClick={() => {
-              navigator.clipboard.writeText(indianQr?.wallet_address || "");
+              navigator.clipboard.writeText(indianQr?.upi_id || "");
               toast.success("UPI ID copied to clipboard!", {
                 position: "top-center",
                 autoClose: 2000,

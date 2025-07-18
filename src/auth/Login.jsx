@@ -136,7 +136,7 @@ function Login() {
       {loading && <Loader setLoading={setLoading} loading={loading} />}
       <section className="h-[100vh] font-inter w-full flex  flex-col items-start dark:text-white">
         <div className="bg-gradient-to-l from-red to-redLight w-full pb-5">
-          <h1 className="text-sm font-bold font-inter px-10 mt-2">Log in</h1>
+          <h1 className="text-sm font-bold font-inter px-10 mt-3">Log in</h1>
           <p className="text-[10px] px-10 mt-2">
             Please login with your phone number or email{" "}
           </p>

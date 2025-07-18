@@ -157,7 +157,7 @@ useEffect(() => {
       <section className=" w-full flex flex-col items-start dark:text-gray">
         <div className="bg-gradient-to-l from-red to-redLight w-full">
           <div className=" text-white pb-5">
-            <h1 className="text-sm px-5 font-bold mt-2">Register</h1>
+            <h1 className="text-sm px-5 font-bold mt-3">Register</h1>
             <p className="text-[10px] px-5 my-2">
               Please register with your phone number or email{" "}
             </p>
@@ -377,6 +377,7 @@ useEffect(() => {
                   {...formik.getFieldProps("referral_code")}
                   type="text"
                   name="referral_code"
+                  value={referralCode}
                   id="referral_code"
                   placeholder="Please enter the invitation code"
                   className="bg-inputBg mt-2 focus:border-[1px] text-[14px] border-bg2 rounded-md outline-none w-full pl-3 p-3 placeholder:text-gray text-gray"

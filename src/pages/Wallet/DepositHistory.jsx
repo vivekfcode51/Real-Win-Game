@@ -127,7 +127,7 @@ function DepositHistory() {
 
     const payMethod = [{
         image: payzaar,
-        name: "payzaar",
+        name: "Manual",
         type: 0
     },
     // {
@@ -217,7 +217,7 @@ function DepositHistory() {
                                     </div>
                                     <div className="flex mt-4 text-gray justify-between items-center">
                                         <p className="text-xsm font-bold">Type</p>
-                                        <p className="text-xsm text-gray font-semibold">{item?.type == 0 ? "payzaar" : item?.type == 1 ? "Bank card" : item?.type === 2 ? "USDT" : ""}</p>
+                                        <p className="text-xsm text-gray font-semibold">{item?.type == 0 ? "Manual" : item?.type == 1 ? "Bank card" : item?.type === 2 ? "USDT" : ""}</p>
                                     </div>
                                     <div className="flex mt-4 text-gray justify-between items-center">
                                         <p className="text-xsm font-bold">Time</p>
