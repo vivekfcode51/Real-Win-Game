@@ -24,11 +24,11 @@ const validationSchema = yup.object().shape({
         .string()
         .matches(/^[A-Z]{4}0[A-Z0-9]{6}$/, "Invalid IFSC code format")
         .required("IFSC code is required"),
-    branch_name: yup.string().required("Branch name is required"),
-     upi_id: yup
-        .string()
-        .matches(/^[\w.-]+@[\w.-]+$/, "Invalid UPI ID format")
-        .required("UPI ID is required"),
+    branch: yup.string().required("Branch name is required"),
+    //  upi_id: yup
+    //     .string()
+    //     .matches(/^[\w.-]+@[\w.-]+$/, "Invalid UPI ID format")
+    //     .required("UPI ID is required"),
 });
 
 const AddBankAccountDetails = () => {
@@ -55,11 +55,12 @@ const AddBankAccountDetails = () => {
             return;
         }
 
-        const payload = { userid: userId, ...data };
-
+        const payload = { user_id: userId, ...data };
+console.log("payload",payload)
         try {
             const res = await axios.post(apis?.addAccount, payload);
-            if (res.data?.status === "200") {
+            console.log("res",res);
+            if (res.data?.status === 200) {
                 setLoading(false)
                 toast.success(res?.data?.message);
                 navigate("/wallet/withdrawal")
@@ -69,7 +70,7 @@ const AddBankAccountDetails = () => {
             }
         } catch (err) {
             setLoading(false)
-            // console.error("Error while adding bank account:", err);
+            console.error("Error while adding bank account:", err);
             toast.error("Something went wrong");
         }
     };
@@ -77,10 +78,11 @@ const AddBankAccountDetails = () => {
         
         try {
             const res = await axios.get(`${apis.getBranchnameByIfsc}${ifscCode}`);
+            console.log("ifc code",res);
             if (res?.data?.status === "success") {
                 const { bank, branch } = res.data.data;
                 setValue("bank_name", bank, { shouldValidate: true });
-                setValue("branch_name", branch, { shouldValidate: true });
+                setValue("branch", branch, { shouldValidate: true });
             } else {
                 toast.error("Invalid IFSC Code");
             }
@@ -95,7 +97,7 @@ const AddBankAccountDetails = () => {
             getBranchnameByIfscHandler(ifscCode);
         } else {
             setValue("bank_name", "", { shouldValidate: true });
-            setValue("branch_name", "", { shouldValidate: true });
+            setValue("branch", "", { shouldValidate: true });
         }
     }, [watch("ifsc_code")]);
     return (
@@ -132,7 +134,7 @@ const AddBankAccountDetails = () => {
                 </div>
 
                  {/* Bank upi id */}
-                <div className="mb-6">
+                {/* <div className="mb-6">
                     <label className="text-xsm font-medium flex items-center text-white">
                         <img src={acc_number} alt="icon" className="w-7 h-7 mr-2" />
                         Bank UPI Id
@@ -144,7 +146,7 @@ const AddBankAccountDetails = () => {
                         className="w-full text-xsm text-gray placeholder:font-bold outline-none mt-2 px-4 py-3 border border-redLight rounded-lg bg-inputBg"
                     />
                     {errors.upi_id && <p className="text-bg2 text-xs">{errors.upi_id.message}</p>}
-                </div>
+                </div> */}
 
                 {/* Bank account number */}
                 <div className="mb-6">
@@ -204,18 +206,18 @@ const AddBankAccountDetails = () => {
                         Branch name
                     </label>
                     <input
-                        {...register("branch_name")}
+                        {...register("branch")}
                         type="text"
                         placeholder="Branch name"
                         className="w-full text-xsm text-gray placeholder:font-bold outline-none mt-2 px-4 py-3 border border-redLight rounded-lg bg-inputBg"
                         readOnly
                     />
-                    {errors.branch_name && <p className="text-red text-xs">{errors.branch_name.message}</p>}
+                    {errors.branch && <p className="text-red text-xs">{errors.branch.message}</p>}
                 </div>
                 <button
                     type="submit"
                     className={`w-full tracking-[2.5px] text-white text-sm font-semibold py-2 rounded-full shadow-md transition-colors duration-300
-    ${isValid ? "bg-gradient-to-l from-[#ff9a8e] to-[#f95959]" : "bg-[#CBCDDB]"}`}
+                    ${isValid ? "bg-gradient-to-l from-[#ff9a8e] to-[#f95959]" : "bg-[#CBCDDB]"}`}
                     disabled={!isValid}
                 >
                     Save

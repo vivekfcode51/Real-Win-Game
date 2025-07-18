@@ -83,8 +83,9 @@ function Withdrawal() {
             return;
         }
         try {
-            const res = await axios.get(`${apis.accountView}?userid=${userid}`)
-            if (res?.data?.status === "200") {
+            const res = await axios.get(`${apis.accountView}?user_id=${userid}`)
+            console.log("resresres",res)
+            if (res?.data?.status === 200) {
                 setViewAccountDetails(res?.data?.data)
             }
         } catch (err) {
